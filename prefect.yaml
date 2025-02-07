@@ -16,7 +16,7 @@ push:
 pull:
 - prefect.deployments.steps.git_clone:
     repository: https://github.com/Ben-Epstein/prefect-modal
-    branch: main
+    branch: full-package
     credentials: '{{ prefect.blocks.github-credentials.grotto-exploration-pull }}'
 - prefect.deployments.steps.run_shell_script:
     directory: '{{ clone-step.directory }}'

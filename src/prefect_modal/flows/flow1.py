@@ -1,5 +1,5 @@
 from prefect import flow, task
-
+from prefect_modal.flows.constants import MY_VAR
 
 @task()
 def do_print(param: str) -> None:
@@ -15,7 +15,7 @@ def run_my_flow(param: str) -> None:
 
 @flow(log_prints=True)
 def main(name: str = "world", goodbye: bool = False):
-    print(f"Hello {name} from Prefect! 🤗")
+    print(f"Hello {name} from Prefect! 🤗. Your lucky number is {MY_VAR}")
     run_my_flow(name)
     if goodbye:
         print(f"Goodbye {name}!")
