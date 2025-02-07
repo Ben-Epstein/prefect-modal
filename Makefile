@@ -21,3 +21,7 @@ setup:
 prefect-deploy: setup
 	uv run prefect deploy --prefect-file prefect.yaml --all
 	
+run-prefect:
+	uv run prefect deployment run 'main/prefect-modal-example'
+
+deploy-and-run: prefect-deploy run-prefect 

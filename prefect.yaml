@@ -15,12 +15,15 @@ push:
 # pull section allows you to provide instructions for cloning this project in remote locations
 pull:
 - prefect.deployments.steps.git_clone:
+    id: clone-step
     repository: https://github.com/Ben-Epstein/prefect-modal
     branch: full-package
-    credentials: '{{ prefect.blocks.github-credentials.grotto-exploration-pull }}'
+    credentials: '{{ prefect.blocks.github-credentials.prefect-modal }}'
 - prefect.deployments.steps.run_shell_script:
     directory: '{{ clone-step.directory }}'
-    script: make setup
+    script: |
+      pip install uv==0.5.6
+      uv pip install --system -e .
 - prefect.deployments.steps.set_working_directory:
     directory: '/{{ clone-step.directory }}'
 
