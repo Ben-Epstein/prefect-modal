@@ -21,9 +21,12 @@ pull:
     credentials: '{{ prefect.blocks.github-credentials.prefect-modal }}'
 - prefect.deployments.steps.run_shell_script:
     directory: '{{ clone-step.directory }}'
-    script: make setup
+    script: |
+        pip install --upgrade 'uv>=0.5.6,<0.6'
+        /bin/sh -c "uv export --no-dev --no-editable --no-hashes --locked > requirements.txt"
+        uv pip install --system -r requirements.txt
 - prefect.deployments.steps.set_working_directory:
-    directory: '/{{ clone-step.directory }}'
+    directory: '/{{ clone-step.directory }}/src'
 
 # the deployments section allows you to provide configuration for deploying flows
 deployments:
@@ -31,7 +34,7 @@ deployments:
   version:
   tags: []
   description: Our first flow which runs on modal
-  entrypoint: src/prefect_modal/flows/flow1.py:main
+  entrypoint: prefect_modal/flows/flow1.py:main
   schedules:
   - cron: 0 12 * * *
     timezone: America/New_York
