@@ -32,11 +32,7 @@ deployments:
   version:
   tags: []
   description: Our first flow which runs on modal
-<<<<<<< HEAD
   entrypoint: prefect_modal.flows.flow1:main
-=======
-  entrypoint: prefect_modal/flows/flow1.py:main
->>>>>>> main
   schedules:
   - cron: 0 12 * * *
     timezone: America/New_York
