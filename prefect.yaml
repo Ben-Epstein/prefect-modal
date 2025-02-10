@@ -41,6 +41,8 @@ deployments:
   work_pool:
     name: pref-modal-pool
     work_queue_name: default
-    job_variables: {}
+    job_variables: {
+        "env": {"UV_PROJECT_ENVIRONMENT": "/usr/local"}
+    }
   concurrency_limit:
   parameters: {}
