@@ -20,5 +20,4 @@ setup:
 
 
 prefect-deploy: setup
-	(cd src && uv run prefect deploy --prefect-file ../prefect.yaml --all)
-	
+	uv run prefect deploy --prefect-file prefect.yaml --all
