@@ -24,7 +24,7 @@ pull:
     script: pip install uv==0.5.6
 - prefect.deployments.steps.run_shell_script:
     directory: '{{ clone-step.directory }}'
-    script: uv sync --no-editable --extra workflows
+    script: uv sync --no-editable
 
 # the deployments section allows you to provide configuration for deploying flows
 deployments:
