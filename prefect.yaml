@@ -17,7 +17,7 @@ pull:
 - prefect.deployments.steps.git_clone:
     id: clone-step
     repository: https://github.com/Ben-Epstein/prefect-modal
-    branch: full-package
+    branch: main
     credentials: '{{ prefect.blocks.github-credentials.prefect-modal }}'
 - prefect.deployments.steps.run_shell_script:
     directory: '{{ clone-step.directory }}'
@@ -32,7 +32,11 @@ deployments:
   version:
   tags: []
   description: Our first flow which runs on modal
+<<<<<<< HEAD
   entrypoint: prefect_modal.flows.flow1:main
+=======
+  entrypoint: prefect_modal/flows/flow1.py:main
+>>>>>>> main
   schedules:
   - cron: 0 12 * * *
     timezone: America/New_York

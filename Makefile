@@ -5,6 +5,7 @@ uv:
 	pip install --upgrade 'uv>=0.5.6,<0.6'
 	uv venv
 
+.PHONY: setup
 setup:
 	@if [ ! -d ".venv" ] || ! command -v uv > /dev/null; then \
 		echo "UV not installed or .venv does not exist, running uv"; \
@@ -19,7 +20,7 @@ setup:
 
 
 prefect-deploy: setup
-	uv run prefect deploy --prefect-file prefect.yaml --all
+	(cd src && uv run prefect deploy --prefect-file ../prefect.yaml --all)
 	
 run-prefect:
 	uv run prefect deployment run 'main/prefect-modal-example'
